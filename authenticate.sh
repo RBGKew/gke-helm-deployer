@@ -27,10 +27,8 @@ if [ -z ${G_ZONE+x} ]; then
   configured=false
 fi
 
-G_SERVICE_ACCOUNT=${G_SERVICE_ACCOUNT:-service-account.json}
-
 if [ "$configured" = true ]; then
-  gcloud auth activate-service-account $G_USER --key-file /secrets/$G_SERVICE_ACCOUNT
+  gcloud auth activate-service-account $G_USER --key-file $GOOGLE_APPLICATION_CREDENTIALS
   gcloud config set project $G_PROJECT
   gcloud config set container/cluster $G_CLUSTER
   gcloud config set compute/region $G_REGION
