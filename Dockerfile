@@ -18,4 +18,6 @@ RUN gcloud components install kubectl \
 
 ADD authenticate.sh /usr/bin/authenticate
 
-ENTRYPOINT ["authenticate", "bash"]
+ENTRYPOINT ["authenticate"]
+
+CMD ["bash"]
