@@ -3,8 +3,7 @@ FROM google/cloud-sdk:217.0.0-alpine
 ENV HELM_VERSION v2.9.1
 ENV HELM_FILENAME helm-${HELM_VERSION}-linux-amd64.tar.gz
 ENV HELM_URL https://storage.googleapis.com/kubernetes-helm/${HELM_FILENAME}
-ENV G_SERVICE_ACCOUNT ${G_SERVICE_ACCOUNT:-service-account.json}
-ENV GOOGLE_APPLICATION_CREDENTIALS /secrets/${G_SERVICE_ACCOUNT}
+ENV G_SERVICE_ACCOUNT ${G_SERVICE_ACCOUNT:-/tmp/secrets/service-account.json}
 
 WORKDIR /
 VOLUME /secrets
@@ -17,6 +16,7 @@ RUN gcloud components install kubectl \
   && helm init --client-only
 
 ADD authenticate.sh /usr/bin/authenticate
+ADD deploy.sh /usr/bin/deploy
 
 ENTRYPOINT ["authenticate"]
 

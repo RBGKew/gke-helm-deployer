@@ -27,8 +27,13 @@ if [ -z ${G_ZONE+x} ]; then
   configured=false
 fi
 
+if [ ! -f $G_SERVICE_ACCOUNT ]; then
+  echo "WARNING: Service account key '$G_SERVICE_ACCOUNT' does not exist"
+  configured=false
+fi
+
 if [ "$configured" = true ]; then
-  gcloud auth activate-service-account $G_USER --key-file $GOOGLE_APPLICATION_CREDENTIALS
+  gcloud auth activate-service-account $G_USER --key-file $G_SERVICE_ACCOUNT
   gcloud config set project $G_PROJECT
   gcloud config set container/cluster $G_CLUSTER
   gcloud config set compute/region $G_REGION
@@ -38,4 +43,5 @@ else
   echo "Not attempting to configure gcloud credentials"
 fi
 
+export CONFIGURED=$configured
 exec $@;
