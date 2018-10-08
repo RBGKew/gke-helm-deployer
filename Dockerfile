@@ -1,6 +1,6 @@
 FROM google/cloud-sdk:217.0.0-alpine
 
-ENV HELM_VERSION v2.9.1
+ENV HELM_VERSION v2.11.0
 ENV HELM_FILENAME helm-${HELM_VERSION}-linux-amd64.tar.gz
 ENV HELM_URL https://storage.googleapis.com/kubernetes-helm/${HELM_FILENAME}
 ENV G_SERVICE_ACCOUNT ${G_SERVICE_ACCOUNT:-/tmp/secrets/service-account.json}
