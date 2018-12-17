@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:217.0.0-alpine
+FROM google/cloud-sdk:228.0.0-alpine
 
 ENV HELM_VERSION v2.11.0
 ENV HELM_FILENAME helm-${HELM_VERSION}-linux-amd64.tar.gz
